@@ -1,21 +1,14 @@
 import yfinance as yf
-import pandas as pd
+import database
 
-nq = yf.Ticker("NQ=F").history(period="1y")
-es = yf.Ticker("ES=F").history(period="1y")
+SYMBOLS = {"NQ": "NQ=F", "ES": "ES=F"}
 
-df = pd.DataFrame({
-    "nq_close": nq["Close"],
-    "es_close": es["Close"],
-})
+def fetch_and_store():
+    database.create_table()
+    for name, yahoo_ticker in SYMBOLS.items():
+        df = yf.Ticker(yahoo_ticker).history(period="1y")
+        database.save_prices(name,df)
+        print(f"Saved {len(df)} rows for {name}")
 
-df ["nq_ret"] = df["nq_close"].pct_change() * 100
-df ["es_ret"] = df["es_close"].pct_change() * 100
-df["divergence"] = df["nq_ret"] - df["es_ret"]
-
-df = df.dropna()
-
-print(df.tail(10))
-print(f"\nAvg Daily Divergence: {df['divergence'].mean():.3f}%")
-print(f"Biggest NQ Outperformance: {df['divergence'].max():.2f}%")
-print(f"Biggest NQ Underperformance: {df['divergence'].min():.2f}%")
+if __name__ == "__main__":
+    fetch_and_store()
