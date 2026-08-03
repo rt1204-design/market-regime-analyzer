@@ -753,7 +753,7 @@
     "date":"2026-02-18",
     "divergence":0.2681143153,
     "rolling_vol":0.4653247622,
-    "regime":"turbulent"
+    "regime":"normal"
   },
   {
     "date":"2026-02-19",
@@ -1423,8 +1423,20 @@
   },
   {
     "date":"2026-07-30",
-    "divergence":1.9497036107,
-    "rolling_vol":0.9317795091,
+    "divergence":1.6267160271,
+    "rolling_vol":0.8937347264,
+    "regime":"turbulent"
+  },
+  {
+    "date":"2026-07-31",
+    "divergence":-0.0359910862,
+    "rolling_vol":0.8383980767,
+    "regime":"turbulent"
+  },
+  {
+    "date":"2026-08-03",
+    "divergence":0.3456024462,
+    "rolling_vol":0.8340441588,
     "regime":"turbulent"
   }
 ]

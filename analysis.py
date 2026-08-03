@@ -37,7 +37,7 @@ def detect_regimes(df,window=20):
     )
     return df.dropna(subset=["rolling_vol"])
 
-def export_json(df, path="dashboard_data.json"):
+def export_json(df, path="dashboard/public/dashboard_data.json"):
     out = df.reset_index()
     out["date"] = out["date"].dt.strftime("%Y-%m-%d")
     out[["date", "divergence", "rolling_vol", "regime"]].to_json(
